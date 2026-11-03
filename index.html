@@ -5,113 +5,196 @@
   <!-- This line makes the site look right on phones -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <!-- The text that appears in the browser tab. CHANGE THIS -->
-  <title>Your Name — Art & Writing</title>
+  <!-- The text that appears in the browser tab -->
+  <title>Christy in Brum</title>
 
-  <!-- STYLING (CSS). This controls how everything looks.
-       Try changing the colours below and see what happens! -->
+  <!-- FONT: loads "Newsreader", a serif designed for long reading.
+       If it ever fails to load, the page falls back to Georgia. -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&display=swap" rel="stylesheet">
+
+  <!-- STYLING (CSS). This controls how everything looks. -->
   <style>
+    /* YOUR BRAND COLOURS. Change these four lines to restyle the whole site.
+       The accent is set to the same black as the ink, so the site is pure
+       black-on-paper and your artwork supplies the colour.
+       To bring a colour back later, change --accent (e.g. #26307A, deep ultramarine). */
     :root {
-      --background: #faf7f2;   /* page colour (warm off-white) */
-      --text: #2b2b2b;         /* main text colour */
-      --accent: #c2553a;       /* colour for buttons and links */
-      --soft: #ece5da;         /* colour for boxes */
+      --paper: #F0EEE9;   /* background: soft off-white */
+      --ink: #1A1A1A;     /* main text: near-black */
+      --accent: #1A1A1A;  /* masthead, labels, buttons: same black as the ink */
+      --soft: #E4E1DA;    /* warm light grey: placeholder boxes */
     }
 
     body {
       margin: 0;
-      background: var(--background);
-      color: var(--text);
-      font-family: Georgia, "Times New Roman", serif;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: "Newsreader", Georgia, serif;
+      font-size: 19px;
       line-height: 1.6;
     }
 
     /* Keeps everything in a neat column in the middle of the page */
     .container {
-      max-width: 760px;
+      max-width: 780px;
       margin: 0 auto;
       padding: 0 24px;
     }
 
-    header {
-      text-align: center;
-      padding: 72px 0 48px;
+    /* Small letter-spaced labels, like "ISSUE NO. 1" */
+    .label {
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 12px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
     }
 
-    header h1 {
-      font-size: 2.8rem;
+    /* ---------- MASTHEAD (the top of the page) ---------- */
+    header {
+      text-align: center;
+      padding-top: 48px;
+    }
+
+    .masthead {
+      font-size: clamp(2.6rem, 9vw, 4.4rem);  /* shrinks on phones */
+      font-weight: 500;
+      color: var(--accent);
       margin: 0;
+      line-height: 1.1;
       letter-spacing: -0.5px;
     }
 
-    header p {
-      font-style: italic;
-      margin-top: 8px;
-      opacity: 0.8;
+    /* The thick-and-thin double line under the masthead */
+    .double-rule {
+      border-top: 3px solid var(--accent);
+      border-bottom: 1px solid var(--accent);
+      height: 3px;
+      margin: 16px 0 10px;
+    }
+
+    .issue-line {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+      color: var(--ink);
+    }
+
+    .issue-line .middle { color: var(--accent); }
+
+    /* On phones, show only the middle label so the line doesn't wrap */
+    @media (max-width: 560px) {
+      .issue-line { justify-content: center; }
+      .issue-line .side { display: none; }
+    }
+
+    nav {
+      margin: 22px 0 8px;
     }
 
     nav a {
-      margin: 0 12px;
-      color: var(--text);
+      margin: 0 14px;
+      color: var(--ink);
       text-decoration: none;
-      font-family: Arial, sans-serif;
-      font-size: 0.9rem;
-      text-transform: uppercase;
-      letter-spacing: 1px;
     }
 
     nav a:hover { color: var(--accent); }
 
+    /* ---------- SECTIONS ---------- */
     section {
-      padding: 40px 0;
-      border-top: 1px solid var(--soft);
+      padding: 44px 0;
+      border-top: 1px solid var(--ink);
     }
 
-    h2 { font-size: 1.6rem; margin-top: 0; }
+    h2 {
+      font-size: 1.7rem;
+      font-weight: 500;
+      margin: 6px 0 16px;
+      line-height: 1.2;
+    }
 
-    /* The art grid: boxes arrange themselves in rows automatically */
+    .kicker { color: var(--accent); }   /* the small label above a heading */
+
+    .standfirst {                       /* the italic line under a headline */
+      font-style: italic;
+      font-size: 1.15rem;
+      margin-top: -6px;
+    }
+
+    /* ---------- COVER (your featured artwork) ---------- */
+    .cover {
+      width: 100%;
+      aspect-ratio: 4 / 3;
+      object-fit: cover;
+      background: var(--soft);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 8px;
+    }
+
+    .caption {
+      font-style: italic;
+      font-size: 0.95rem;
+      opacity: 0.85;
+    }
+
+    /* ---------- ART GRID ---------- */
     .gallery {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-      gap: 16px;
+      grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+      gap: 22px;
     }
+
+    .gallery figure { margin: 0; }
 
     .gallery img,
     .placeholder {
       width: 100%;
-      aspect-ratio: 1 / 1;      /* square tiles */
+      aspect-ratio: 1 / 1;
       object-fit: cover;
-      border-radius: 6px;
       background: var(--soft);
-    }
-
-    .placeholder {
       display: flex;
       align-items: center;
       justify-content: center;
-      font-family: Arial, sans-serif;
-      font-size: 0.85rem;
-      opacity: 0.6;
     }
 
+    .gallery figcaption {
+      font-style: italic;
+      font-size: 0.95rem;
+      margin-top: 8px;
+      text-align: center;
+    }
+
+    /* ---------- BUTTONS AND LINKS ---------- */
     .button {
       display: inline-block;
       background: var(--accent);
-      color: white;
-      padding: 12px 24px;
-      border-radius: 999px;
+      color: #fff;
+      padding: 12px 26px;
       text-decoration: none;
-      font-family: Arial, sans-serif;
-      font-size: 0.95rem;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 14px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    .button.outline {
+      background: transparent;
+      color: var(--accent);
+      border: 1px solid var(--accent);
     }
 
     .button:hover { opacity: 0.85; }
 
+    a { color: var(--accent); }
+
     footer {
+      border-top: 3px solid var(--accent);
       text-align: center;
-      padding: 40px 0;
-      font-size: 0.85rem;
-      opacity: 0.6;
+      padding: 28px 0 48px;
     }
   </style>
 </head>
@@ -119,19 +202,76 @@
 <body>
   <div class="container">
 
-    <!-- TOP OF THE PAGE -->
+    <!-- MASTHEAD -->
     <header>
-      <h1>Your Name</h1>                         <!-- CHANGE THIS -->
-      <p>Artist, writer, maker of things.</p>    <!-- CHANGE THIS -->
-      <nav>
-        <a href="#about">About</a>
+      <h1 class="masthead">Christy in Brum</h1>
+      <div class="double-rule"></div>
+      <div class="issue-line label">
+        <span class="side">Birmingham</span>
+        <span class="middle">Art · Essays · Cartoons</span>
+        <span class="side">Est. 2026</span>
+      </div>
+      <nav class="label">
         <a href="#art">Art</a>
         <a href="#newsletter">Newsletter</a>
+        <a href="#about">About</a>
       </nav>
     </header>
 
+    <!-- COVER: your featured piece, like a magazine cover.
+         To use a real painting: upload it to the repo (e.g. cover.jpg),
+         then replace the <div class="cover">...</div> line with:
+         <img class="cover" src="cover.jpg" alt="Describe the painting">  -->
+    <section>
+      <div class="label kicker">This month</div>
+      <h2>On ultramarine, the blue that cost more than gold</h2>
+      <p class="standfirst">Lapis lazuli, a long journey, and why painters saved it for the Virgin's robes.</p>
+      <div class="cover label">Your watercolour here</div>
+      <p class="caption">Cover: a short description of your painting, 2026.</p>
+    </section>
+
+    <!-- ART SECTION
+         To add a real picture: upload the image to your repo (e.g. painting1.jpg),
+         then replace a placeholder line with:
+         <img src="painting1.jpg" alt="Short description of the painting">  -->
+    <section id="art">
+      <div class="label kicker">Portfolio</div>
+      <h2>Art</h2>
+      <div class="gallery">
+        <figure>
+          <div class="placeholder label">Artwork 1</div>
+          <figcaption>Title of the piece</figcaption>
+        </figure>
+        <figure>
+          <div class="placeholder label">Artwork 2</div>
+          <figcaption>Title of the piece</figcaption>
+        </figure>
+        <figure>
+          <div class="placeholder label">Cartoon</div>
+          <figcaption>"A funny caption goes here."</figcaption>
+        </figure>
+      </div>
+      <p style="margin-top: 30px;">
+        <!-- When you have a shop (Etsy, Big Cartel, Ko-fi...), put its link here -->
+        <a class="button outline" href="#">Shop coming soon</a>
+      </p>
+    </section>
+
+    <!-- NEWSLETTER SECTION -->
+    <section id="newsletter">
+      <div class="label kicker">The newsletter</div>
+      <h2>Margins and Matters</h2>
+      <p>
+        Essays on pigments, materials and making, with the odd political
+        cartoon. New posts straight to your inbox.
+      </p>
+      <!-- CHANGE the link below to your Substack address once it exists -->
+      <a class="button" href="https://marginsandmatters.substack.com">Subscribe on Substack</a>
+    </section>
+
     <!-- ABOUT SECTION -->
     <section id="about">
+      <div class="label kicker">Hello</div>
       <h2>About</h2>
       <p>
         A few sentences about you: what you make, what you write about,
@@ -139,37 +279,9 @@
       </p>
     </section>
 
-    <!-- ART SECTION
-         To add a real picture: upload an image to your repo (e.g. painting1.jpg),
-         then swap a placeholder line for:
-         <img src="painting1.jpg" alt="Short description of the painting">  -->
-    <section id="art">
-      <h2>Art</h2>
-      <div class="gallery">
-        <div class="placeholder">Artwork 1</div>
-        <div class="placeholder">Artwork 2</div>
-        <div class="placeholder">Artwork 3</div>
-      </div>
-      <p style="margin-top: 24px;">
-        <!-- When you have a shop (Etsy, Big Cartel, Ko-fi...), put its link here -->
-        <a class="button" href="#">Visit the shop (coming soon)</a>
-      </p>
-    </section>
-
-    <!-- NEWSLETTER SECTION -->
-    <section id="newsletter">
-      <h2>Newsletter</h2>
-      <p>
-        I write about [your topic] on Substack. Subscribe to get new posts
-        straight to your inbox.
-      </p>
-      <!-- CHANGE the link below to your Substack address -->
-      <a class="button" href="https://yourname.substack.com">Read on Substack</a>
-    </section>
-
     <!-- BOTTOM OF THE PAGE -->
-    <footer>
-      © 2026 Your Name
+    <footer class="label">
+      © 2026 Christy in Brum
     </footer>
 
   </div>
