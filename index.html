@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <!-- This line makes the site look right on phones -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- The text that appears in the browser tab. CHANGE THIS -->
+  <title>Your Name — Art & Writing</title>
+
+  <!-- STYLING (CSS). This controls how everything looks.
+       Try changing the colours below and see what happens! -->
+  <style>
+    :root {
+      --background: #faf7f2;   /* page colour (warm off-white) */
+      --text: #2b2b2b;         /* main text colour */
+      --accent: #c2553a;       /* colour for buttons and links */
+      --soft: #ece5da;         /* colour for boxes */
+    }
+
+    body {
+      margin: 0;
+      background: var(--background);
+      color: var(--text);
+      font-family: Georgia, "Times New Roman", serif;
+      line-height: 1.6;
+    }
+
+    /* Keeps everything in a neat column in the middle of the page */
+    .container {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    header {
+      text-align: center;
+      padding: 72px 0 48px;
+    }
+
+    header h1 {
+      font-size: 2.8rem;
+      margin: 0;
+      letter-spacing: -0.5px;
+    }
+
+    header p {
+      font-style: italic;
+      margin-top: 8px;
+      opacity: 0.8;
+    }
+
+    nav a {
+      margin: 0 12px;
+      color: var(--text);
+      text-decoration: none;
+      font-family: Arial, sans-serif;
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    nav a:hover { color: var(--accent); }
+
+    section {
+      padding: 40px 0;
+      border-top: 1px solid var(--soft);
+    }
+
+    h2 { font-size: 1.6rem; margin-top: 0; }
+
+    /* The art grid: boxes arrange themselves in rows automatically */
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 16px;
+    }
+
+    .gallery img,
+    .placeholder {
+      width: 100%;
+      aspect-ratio: 1 / 1;      /* square tiles */
+      object-fit: cover;
+      border-radius: 6px;
+      background: var(--soft);
+    }
+
+    .placeholder {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: Arial, sans-serif;
+      font-size: 0.85rem;
+      opacity: 0.6;
+    }
+
+    .button {
+      display: inline-block;
+      background: var(--accent);
+      color: white;
+      padding: 12px 24px;
+      border-radius: 999px;
+      text-decoration: none;
+      font-family: Arial, sans-serif;
+      font-size: 0.95rem;
+    }
+
+    .button:hover { opacity: 0.85; }
+
+    footer {
+      text-align: center;
+      padding: 40px 0;
+      font-size: 0.85rem;
+      opacity: 0.6;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+
+    <!-- TOP OF THE PAGE -->
+    <header>
+      <h1>Your Name</h1>                         <!-- CHANGE THIS -->
+      <p>Artist, writer, maker of things.</p>    <!-- CHANGE THIS -->
+      <nav>
+        <a href="#about">About</a>
+        <a href="#art">Art</a>
+        <a href="#newsletter">Newsletter</a>
+      </nav>
+    </header>
+
+    <!-- ABOUT SECTION -->
+    <section id="about">
+      <h2>About</h2>
+      <p>
+        A few sentences about you: what you make, what you write about,
+        and what people can expect here. Keep it friendly and short.
+      </p>
+    </section>
+
+    <!-- ART SECTION
+         To add a real picture: upload an image to your repo (e.g. painting1.jpg),
+         then swap a placeholder line for:
+         <img src="painting1.jpg" alt="Short description of the painting">  -->
+    <section id="art">
+      <h2>Art</h2>
+      <div class="gallery">
+        <div class="placeholder">Artwork 1</div>
+        <div class="placeholder">Artwork 2</div>
+        <div class="placeholder">Artwork 3</div>
+      </div>
+      <p style="margin-top: 24px;">
+        <!-- When you have a shop (Etsy, Big Cartel, Ko-fi...), put its link here -->
+        <a class="button" href="#">Visit the shop (coming soon)</a>
+      </p>
+    </section>
+
+    <!-- NEWSLETTER SECTION -->
+    <section id="newsletter">
+      <h2>Newsletter</h2>
+      <p>
+        I write about [your topic] on Substack. Subscribe to get new posts
+        straight to your inbox.
+      </p>
+      <!-- CHANGE the link below to your Substack address -->
+      <a class="button" href="https://yourname.substack.com">Read on Substack</a>
+    </section>
+
+    <!-- BOTTOM OF THE PAGE -->
+    <footer>
+      © 2026 Your Name
+    </footer>
+
+  </div>
+</body>
+</html>
